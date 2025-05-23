@@ -104,7 +104,7 @@ class _ComfortRadarScreenState extends State<ComfortRadarScreen> {
                         ],
                       ),
                     );
-                  }).toList(),
+                  }),
               ],
             ),
           ),
@@ -195,7 +195,7 @@ class _ComfortRadarScreenState extends State<ComfortRadarScreen> {
                         ],
                       ),
                     );
-                  }).toList(),
+                  }),
               ],
             ),
           ),

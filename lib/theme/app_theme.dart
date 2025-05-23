@@ -10,44 +10,44 @@ class AppTheme {
   static const Color lightTextColor = Color(0xFFF5F5F5);
   static const Color darkTextColor = Color(0xFF212121);
   static const Color cardColor = Color(0xFF2C2C2C);
-  
+
   // Gradients
   static const LinearGradient splashGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [Color(0xFF1E1E1E), Color(0xFF3C3C3C)],
   );
-  
+
   static const LinearGradient buttonGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [primaryColor, Color(0xFFF44336)],
   );
-  
+
   // Text Styles
   static TextStyle headingStyle = GoogleFonts.poppins(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: lightTextColor,
   );
-  
+
   static TextStyle subheadingStyle = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w600,
     color: lightTextColor,
   );
-  
+
   static TextStyle bodyStyle = GoogleFonts.poppins(
     fontSize: 16,
     color: lightTextColor,
   );
-  
+
   static TextStyle buttonTextStyle = GoogleFonts.poppins(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: lightTextColor,
   );
-  
+
   // Theme Data
   static final ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
@@ -77,7 +77,7 @@ class AppTheme {
       ),
     ),
   );
-  
+
   static final ThemeData darkTheme = ThemeData(
     primaryColor: primaryColor,
     colorScheme: ColorScheme.dark(
@@ -105,7 +105,7 @@ class AppTheme {
         color: lightTextColor,
       ),
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       color: cardColor,
     ),
   );
