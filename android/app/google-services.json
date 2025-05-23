@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "940772918986",
+    "project_id": "comfortcrash",
+    "storage_bucket": "comfortcrash.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940772918986:android:8778ce806a47f14eec5633",
+        "android_client_info": {
+          "package_name": "com.example.comfort_crash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHsXrE0tI4wLb89PwH1RD4ipLCzejTeMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
