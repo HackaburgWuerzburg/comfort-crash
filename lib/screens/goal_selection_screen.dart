@@ -1,115 +1,83 @@
+// lib/screens/goal_selection_screen.dart
+
 import 'package:flutter/material.dart';
-import 'package:comfort_crash/theme/app_theme.dart';
-import 'package:comfort_crash/screens/auth_screen.dart';
-import 'package:comfort_crash/widgets/goal_chip.dart';
 
 class GoalSelectionScreen extends StatefulWidget {
-  const GoalSelectionScreen({super.key});
+  /// A list of goals that were already selected (can be empty).
+  final List<String> selectedGoals;
+
+  /// Pass in any previously-chosen goals here.
+  const GoalSelectionScreen({
+    Key? key,
+    this.selectedGoals = const [],
+  }) : super(key: key);
 
   @override
   State<GoalSelectionScreen> createState() => _GoalSelectionScreenState();
 }
 
 class _GoalSelectionScreenState extends State<GoalSelectionScreen> {
-  final List<String> _goals = [
-    'Confidence', 'Career', 'Creativity', 'Social Skills',
-    'Public Speaking', 'Leadership', 'Fitness', 'Learning',
-    'Relationships', 'Financial Growth', 'Emotional Intelligence',
+  late List<String> _currentSelection;
+
+  final List<String> _allGoals = [
+    'Stress Relief',
+    'Better Sleep',
+    'Anxiety Reduction',
+    'Confidence Boost',
+    'Mindfulness',
+    // …your other topics
   ];
-  
-  final Set<String> _selectedGoals = {};
+
+  @override
+  void initState() {
+    super.initState();
+    // Start with any goals passed in
+    _currentSelection = List.from(widget.selectedGoals);
+  }
 
   void _toggleGoal(String goal) {
     setState(() {
-      if (_selectedGoals.contains(goal)) {
-        _selectedGoals.remove(goal);
+      if (_currentSelection.contains(goal)) {
+        _currentSelection.remove(goal);
       } else {
-        _selectedGoals.add(goal);
+        _currentSelection.add(goal);
       }
     });
   }
 
-  void _continueToAuth() {
-    if (_selectedGoals.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please select at least one goal area'),
-          backgroundColor: AppTheme.primaryColor,
-        ),
-      );
-      return;
-    }
-    
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => AuthScreen(selectedGoals: _selectedGoals.toList()),
-      ),
-    );
+  void _submit() {
+    // e.g. pass back to previous screen
+    Navigator.of(context).pop(_currentSelection);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backgroundColor,
       appBar: AppBar(
-        title: const Text('Choose Your Goals'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: const Text('Select Your Goals'),
+        actions: [
+          TextButton(
+            onPressed: _currentSelection.isEmpty ? null : _submit,
+            child: const Text(
+              'Done',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+        ],
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'What areas do you want to grow in?',
-                style: AppTheme.subheadingStyle,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Select the areas where you want to push your comfort zone.',
-                style: AppTheme.bodyStyle.copyWith(
-                  color: Colors.white70,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 30),
-              Expanded(
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: _goals.map((goal) {
-                    final isSelected = _selectedGoals.contains(goal);
-                    return GoalChip(
-                      label: goal,
-                      isSelected: isSelected,
-                      onTap: () => _toggleGoal(goal),
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _continueToAuth,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppTheme.primaryColor,
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    'Continue',
-                    style: AppTheme.buttonTextStyle,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: _allGoals.map((goal) {
+          final selected = _currentSelection.contains(goal);
+          return ListTile(
+            title: Text(goal),
+            trailing: Icon(
+              selected ? Icons.check_circle : Icons.radio_button_unchecked,
+              color: selected ? Colors.greenAccent : Colors.grey,
+            ),
+            onTap: () => _toggleGoal(goal),
+          );
+        }).toList(),
       ),
     );
   }

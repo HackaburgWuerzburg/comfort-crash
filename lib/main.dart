@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'services/user_provider.dart';
 import 'services/comfort_data_provider.dart';
-import 'widgets/main_scaffold.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Providers wrap the entire MaterialApp
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserProvider>(
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'ComfortCrash',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark(),
-        home: const MainScaffold(),
+        home: const SplashScreen(), // Start here
       ),
     );
   }
