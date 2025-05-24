@@ -54,7 +54,7 @@ class AppTheme {
     colorScheme: ColorScheme.light(
       primary: primaryColor,
       secondary: accentColor,
-      background: Colors.white,
+      surface: Colors.white,
     ),
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
@@ -83,7 +83,7 @@ class AppTheme {
     colorScheme: ColorScheme.dark(
       primary: primaryColor,
       secondary: accentColor,
-      background: backgroundColor,
+      surface: backgroundColor,
     ),
     scaffoldBackgroundColor: backgroundColor,
     textTheme: TextTheme(

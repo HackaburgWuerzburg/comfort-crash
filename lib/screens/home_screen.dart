@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final userProvider = Provider.of<UserProvider>(context);
     final comfortDataProvider = Provider.of<ComfortDataProvider>(context);
     
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       // Home page with Crash Button
       _buildHomePage(comfortDataProvider),
       // Comfort Radar
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppTheme.darkBackgroundColor,

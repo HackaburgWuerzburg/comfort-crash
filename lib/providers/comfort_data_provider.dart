@@ -23,7 +23,7 @@ class ComfortDataProvider extends ChangeNotifier {
   bool _isAnalyzingFear = false;
   
   // Excuse Slayer
-  List<ChatMessage> _excuseConversation = [];
+  final List<ChatMessage> _excuseConversation = [];
   bool _isAnalyzingExcuse = false;
   
   // Getters
